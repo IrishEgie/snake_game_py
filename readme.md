@@ -10,7 +10,7 @@ This is a simple Snake game built using the Python Turtle graphics module. The g
 ## How to Play
 1. Clone this repository
    ```bash
-   git clone ------
+   git clone https://github.com/IrishEgie/snake_game_py.git
 
 
 2. Navigate to the project directory
