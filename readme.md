@@ -34,8 +34,3 @@ This is a simple Snake game built using the Python Turtle graphics module. The g
 - Implement levels and difficulty
 - Add sound effects
 
-## License
-This project is licensed under the MIT License.
-```
-
-This README provides basic instructions for the user, lists features, and outlines how to play the game. It also includes future improvements and licensing information.
