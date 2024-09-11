@@ -27,12 +27,7 @@ class Snake:
     def starting_body(self):
         """Creating the initial Snake Body from 3 squares appended in the "snake" list"""
         for pos in self.starting_pos:
-            segment = Turtle()
-            segment.shape("square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(pos)
-            self.snake.append(segment)
+            self.add_segment(pos)
     def direction(self):
         """Defines the direction of the snake motion"""
         for key, func in self.key_list.items():
@@ -48,4 +43,15 @@ class Snake:
             new_y = self.snake[segment-1].ycor()
             self.snake[segment].goto(new_x,new_y)
         self.snake[0].fd(20)
+        
+    def add_segment(self, pos):
+            segment = Turtle()
+            segment.shape("square")
+            segment.color("white")
+            segment.penup()
+            segment.goto(pos)
+            self.snake.append(segment)
+
+    def extend(self):
+        self.add_segment(self.snake[-1].position())
 

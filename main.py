@@ -11,7 +11,12 @@ screen.bgcolor("black")
 screen.title("Py Snake Game")
 screen.tracer(0)
 
+s_width = screen.window_width()/2
+s_height = screen.window_height()/2
+
 snake = Snake()
+snake_head = snake.snake[0]
+
 food = Food()
 score = Score()
 
@@ -20,12 +25,18 @@ while game_is_on:
     screen.update()
     snake.move()
     
-    if snake.snake[0].distance(food) < 15:
+    if snake_head.distance(food) < 15:
         print("Yum")
         food.rd_coor()
+        snake.extend()
         score.write_score()
-        
-
+    if (abs(snake_head.xcor()) > s_width or abs(snake_head.ycor()) > s_height):
+            score.write_game_over()
+            game_is_on = False
+    for segment in snake.snake[2:]:
+        if snake_head.distance(segment)<10:
+            score.write_game_over()
+            game_is_on = False
 
     time.sleep(0.1)
 
