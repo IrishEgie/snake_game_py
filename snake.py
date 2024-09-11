@@ -11,6 +11,7 @@ class Snake:
         "s": self.down,
         "d": self.right    }
         self.direction()
+    # Functions that set the snake Direction
     def up(self):
         self.snake[0].setheading(90)
         print("Snake goes up")  
