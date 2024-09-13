@@ -7,8 +7,8 @@ class Score(Turtle):
         self.goto(0, 280)
         self.hideturtle()
         self.color("white")
-        self.high_score = 0
         self.SCORE = -1
+        self.read_score()
         self.write_score()
 
     def write_score(self):
@@ -16,6 +16,7 @@ class Score(Turtle):
         self.SCORE +=1
         self.write(f"Score: {self.SCORE} High Score: {self.high_score}", move=False, align='center', font=FONT)
         return self.SCORE
+    
     # def write_game_over(self):
     #     self.game_over = Turtle()
     #     self.game_over.penup()
@@ -25,7 +26,14 @@ class Score(Turtle):
     #     print("Game over")
 
     def reset_score(self):
-        if self.SCORE > self.high_score:
+        if self.SCORE > int(self.high_score):
             self.high_score = self.SCORE
+            with open("high_score.txt", mode="w") as file:
+                content = file.write(f"{self.high_score}")
         self.SCORE = -1
         self.write_score()
+
+    def read_score(self):
+        with open("high_score.txt", mode = "r") as file:
+            self.content_read = file.read()
+        self.high_score = self.content_read
