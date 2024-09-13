@@ -16,14 +16,23 @@ s_height = screen.window_height()/2
 
 snake = Snake()
 snake_head = snake.snake[0]
-
 food = Food()
 score = Score()
 
+last_move_time = time.time()  # Track the time of the last snake movement
+
+MOVE_INTERVAL = 0.08  # Controls how often the snake moves (in seconds)
+FRAME_RATE = 0.01  # Controls how often the screen updates
+
 game_is_on = True
 while game_is_on:
-    screen.update()
-    snake.move()
+    
+    current_time = time.time()
+
+    # Check if enough time has passed to move the snake
+    if current_time - last_move_time >= MOVE_INTERVAL:
+        snake.move()
+        last_move_time = current_time
     
     if snake_head.distance(food) < 15:
         print("Yum")
@@ -31,13 +40,17 @@ while game_is_on:
         snake.extend()
         score.write_score()
     if (abs(snake_head.xcor()) > s_width or abs(snake_head.ycor()) > s_height):
-            score.write_game_over()
-            game_is_on = False
+            score.reset_score()
+            snake.reset_snake()
+            snake_head = snake.snake[0]
+            
     for segment in snake.snake[2:]:
         if snake_head.distance(segment)<10:
-            score.write_game_over()
-            game_is_on = False
-
-    time.sleep(0.1)
+            score.reset_score()
+            snake.reset_snake()
+            snake_head = snake.snake[0]
+            
+    screen.update()
+    time.sleep(FRAME_RATE)
 
 screen.exitonclick()

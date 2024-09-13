@@ -7,18 +7,25 @@ class Score(Turtle):
         self.goto(0, 280)
         self.hideturtle()
         self.color("white")
+        self.high_score = 0
         self.SCORE = -1
         self.write_score()
 
     def write_score(self):
         self.clear()
         self.SCORE +=1
-        self.write(f"Score: {self.SCORE} ", move=False, align='center', font=FONT)
+        self.write(f"Score: {self.SCORE} High Score: {self.high_score}", move=False, align='center', font=FONT)
         return self.SCORE
-    def write_game_over(self):
-        self.game_over = Turtle()
-        self.game_over.penup()
-        self.game_over.hideturtle()
-        self.game_over.color("white")
-        self.game_over.write("GAME OVER",move=False, align='center', font=FONT)
-        print("Game over")
+    # def write_game_over(self):
+    #     self.game_over = Turtle()
+    #     self.game_over.penup()
+    #     self.game_over.hideturtle()
+    #     self.game_over.color("white")
+    #     self.game_over.write("GAME OVER",move=False, align='center', font=FONT)
+    #     print("Game over")
+
+    def reset_score(self):
+        if self.SCORE > self.high_score:
+            self.high_score = self.SCORE
+        self.SCORE = -1
+        self.write_score()
