@@ -28,12 +28,12 @@ class Score(Turtle):
     def reset_score(self):
         if self.SCORE > int(self.high_score):
             self.high_score = self.SCORE
-            with open("high_score.txt", mode="w") as file:
+            with open("./data./high_score.txt", mode="w") as file:
                 content = file.write(f"{self.high_score}")
         self.SCORE = -1
         self.write_score()
 
     def read_score(self):
-        with open("high_score.txt", mode = "r") as file:
+        with open("./data./high_score.txt", mode = "r") as file:
             self.content_read = file.read()
         self.high_score = self.content_read
